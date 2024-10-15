@@ -135,9 +135,9 @@
     <div class="col s12">
       <div class="input-field">
         <select id="thanh-toan">
-          <option value="" disabled selected>Chọn phương thức thanh toán</option>
-          <option value="tra-truoc">Trả trước</option>
-          <option value="tra-sau">Trả sau</option>
+          <option value="" selected>Trạng thái thanh toán</option>
+          <option value="Đã thanh toán">Đã thanh toán</option>
+          <option value="Chưa thanh toán">Chưa thanh toán</option>
         </select>
         <label>Thanh Toán</label>
       </div>
@@ -278,8 +278,12 @@
     },
   ];
 
-  function formatCurrencyVND(amount) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+  function parseCurrency(currencyString) {
+    return parseFloat(currencyString.replace(/\./g, '').replace(' đ', ''));
+  }
+
+  function formatCurrency(value) {
+    return value.toLocaleString('vi-VN') + ' đ'; // Định dạng theo kiểu Việt Nam
   }
 
   function getRange(tenBai) {
@@ -347,6 +351,8 @@
               $('#dau-tieu-thu').val(rows[index][5]);
               $('#tien-dau').val(rows[index][6]);
               $('#dia-diem-van-chuyen').val(rows[index][9]);
+              const total = parseCurrency(rows[index][1]) - parseCurrency(rows[index][2]) - parseCurrency(rows[index][4]) - parseCurrency(rows[index][6]) - parseCurrency(rows[index][7]);
+              $('#thanh-tien').val(formatCurrency(total));
               M.updateTextFields();
             }
           });

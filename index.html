@@ -15,154 +15,155 @@
     <h4>Tạo đơn</h4>
   </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <select id="loai-hang" required>
-          <option value="" selected>Chọn loại hàng</option>
-          <option value="loai1">Hàng Tổng Hợp</option>
-          <option value="loai2">Hàng Cảng</option>
-        </select>
-        <label>Loại Hàng</label>
+  <form action="" id="frm-create-order">
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <select id="loai-hang" required>
+            <option value="" selected>Chọn loại hàng</option>
+            <option value="Hàng Tổng Hợp">Hàng Tổng Hợp</option>
+            <option value="Hàng Cảng">Hàng Cảng</option>
+          </select>
+          <label>Loại Hàng</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <select id="ten-bai" required>
-          <option value="" selected>Chọn tên bãi</option>
-        </select>
-        <label>Tên Bãi</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <select id="ten-bai" required>
+            <option value="" selected>Chọn tên bãi</option>
+          </select>
+          <label>Tên Bãi</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <select id="ma-hang" required>
-          <option value="" selected>Chọn mã hàng</option>
-        </select>
-        <label>Mã Hàng</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <select id="ma-hang" required>
+            <option value="" selected>Chọn mã hàng</option>
+          </select>
+          <label>Mã Hàng</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="cuoc-thu-bai" type="text" readonly>
-        <label for="cuoc-thu-bai">Cước Thu Bãi</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="cuoc-thu-bai" type="text" readonly>
+          <label for="cuoc-thu-bai">Cước Thu Bãi</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="gia-mua" type="text" readonly>
-        <label for="gia-mua">Giá Mua</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="gia-mua" type="text" readonly>
+          <label for="gia-mua">Giá Mua</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="tien-cuoc" type="text" readonly>
-        <label for="tien-cuoc">Tiền Cước</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="tien-cuoc" type="text" readonly>
+          <label for="tien-cuoc">Tiền Cước</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="so-chuyen" type="text" readonly>
-        <label for="so-chuyen">Số Chuyến</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="so-chuyen" type="text" readonly>
+          <label for="so-chuyen">Số Chuyến</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="tai-xe" type="text" readonly>
-        <label for="tai-xe">Tài Xế</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="tai-xe" type="text" readonly>
+          <label for="tai-xe">Tài Xế</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="boi-duong" type="text" readonly>
-        <label for="boi-duong">Bồi Dưỡng</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="boi-duong" type="text" readonly>
+          <label for="boi-duong">Bồi Dưỡng</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="dau-tieu-thu" type="text" readonly>
-        <label for="dau-tieu-thu">Dầu Tiêu Thụ</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="dau-tieu-thu" type="text" readonly>
+          <label for="dau-tieu-thu">Dầu Tiêu Thụ</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="tien-dau" type="text" readonly>
-        <label for="tien-dau">Tiền Dầu</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="tien-dau" type="text" readonly>
+          <label for="tien-dau">Tiền Dầu</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="dia-diem-van-chuyen" type="text" readonly>
-        <label for="dia-diem-van-chuyen">Địa Điểm V/C</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="dia-diem-van-chuyen" type="text" readonly>
+          <label for="dia-diem-van-chuyen">Địa Điểm V/C</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <select id="thanh-toan">
-          <option value="" selected>Trạng thái thanh toán</option>
-          <option value="Đã thanh toán">Đã thanh toán</option>
-          <option value="Chưa thanh toán">Chưa thanh toán</option>
-        </select>
-        <label>Thanh Toán</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <select id="thanh-toan">
+            <option value="" selected>Trạng thái thanh toán</option>
+            <option value="Đã thanh toán">Đã thanh toán</option>
+            <option value="Chưa thanh toán">Chưa thanh toán</option>
+          </select>
+          <label>Thanh Toán</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <textarea id="ghi-chu" class="materialize-textarea"></textarea>
-        <label for="ghi-chu">Ghi Chú</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <textarea id="ghi-chu" class="materialize-textarea"></textarea>
+          <label for="ghi-chu">Ghi Chú</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <input id="thanh-tien" type="text" readonly>
-        <label for="thanh-tien">Thành Tiền</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field">
+          <input id="thanh-tien" type="text" readonly>
+          <label for="thanh-tien">Thành Tiền</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
+    <div class="row">
     <div class="col s6">
       <button id="clear-btn" class="btn red lighten-1 waves-effect waves-light" type="button">Nhập lại
         <i class="material-icons right">clear</i>
@@ -174,6 +175,7 @@
       </button>
     </div>
   </div>
+  </form>
 </div>
 <script>
   const spreadsheetId = '13RTGIJ4LrIKGe8YaOBJrisDqUDAiC3wAZUs-MEjqP8g';
@@ -291,7 +293,7 @@
   }
 
   function loadTenBai(loaiHang) {
-    const range = loaiHang === 'loai1' ? 'CAIDAT!$H$5:$H$1000' : 'CAIDAT!$H$3:$H$4';
+    const range = loaiHang === 'Hàng Tổng Hợp' ? 'CAIDAT!$H$5:$H$1000' : 'CAIDAT!$H$3:$H$4';
     $.ajax({
       url: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`,
       method: 'GET',
@@ -312,7 +314,7 @@
 
   function loadMaHang() {
     const loaiHang = $('#loai-hang').val();
-    const range = loaiHang === 'loai1' ? 'CAIDAT!$B$11:$B$29' : 'CAIDAT!$B$3:$B$10';
+    const range = loaiHang === 'Hàng Tổng Hợp' ? 'CAIDAT!$B$11:$B$29' : 'CAIDAT!$B$3:$B$10';
     $.ajax({
       url: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`,
       method: 'GET',
@@ -364,7 +366,61 @@
     });
   }
 
+  function getOrderCode() {
+    const date = new Date();
+
+    const yy = date.getFullYear().toString().slice(-2); // Lấy 2 chữ số cuối của năm
+    const MM = ('0' + (date.getMonth() + 1)).slice(-2); // Tháng bắt đầu từ 0, nên cộng thêm 1
+    const dd = ('0' + date.getDate()).slice(-2);        // Ngày
+    const hh = ('0' + date.getHours()).slice(-2);        // Giờ
+    const ii = ('0' + date.getMinutes()).slice(-2);      // Phút
+
+    return yy + MM + dd + hh + ii;
+  }
+
   $(document).ready(function () {
+    $('#clear-btn').click(function() {
+      $('#frm-create-order')[0].reset();
+    });
+
+    $('#submit-btn').click(function() {
+      const formData = {
+        maDonHang: getOrderCode(),
+        loaiHang: $('#loai-hang').val(),
+        tenBai: $('#ten-bai').val(),
+        maHang: $('#ma-hang').val(),
+        cuocThuBai: $('#cuoc-thu-bai').val(),
+        giaMua: $('#gia-mua').val(),
+        tienCuoc: $('#tien-cuoc').val(),
+        soChuyen: $('#so-chuyen').val(),
+        taiXe: $('#tai-xe').val(),
+        boiDuong: $('#boi-duong').val(),
+        dauTieuThu: $('#dau-tieu-thu').val(),
+        tienDau: $('#tien-dau').val(),
+        diaDiemVanChuyen: $('#dia-diem-van-chuyen').val(),
+        trangThaiThanhToan: $('#thanh-toan').val(),
+        thanhToan: $('#thanh-toan').val(),
+        ghiChu: $('#ghi-chu').val(),
+        thanhTien: $('#thanh-tien').val()
+      };
+      console.log(formData);
+      $.ajax({
+        url: 'https://script.google.com/macros/s/AKfycbyMtiz0sRs1yxqe6RX0m60rpbpJD2W-FQEa_wRo5iyoeUqIjmxu2BS0kLUU9toCES0iEQ/exec',  // URL của Apps Script Web App
+        method: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+          console.log('Form đã được submit thành công:', response);
+          alert('Dữ liệu đã gửi thành công!');
+        },
+        error: function(error) {
+          console.error('Lỗi khi submit form:', error);
+          alert('Có lỗi xảy ra!');
+        }
+      });
+    });
+
     $('select').formSelect();
 
     // Load Tên Bãi based on Loại Hàng
@@ -386,7 +442,9 @@
 
     // Load remaining fields based on Mã Hàng
     $('#ma-hang').change(function () {
-      loadData();
+      if ($('#ten-bai').val()) {
+        loadData();
+      }
     });
   });
 </script>

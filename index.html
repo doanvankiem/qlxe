@@ -408,14 +408,13 @@
         url: 'https://script.google.com/macros/s/AKfycbyMtiz0sRs1yxqe6RX0m60rpbpJD2W-FQEa_wRo5iyoeUqIjmxu2BS0kLUU9toCES0iEQ/exec',  // URL của Apps Script Web App
         method: 'POST',
         contentType: 'application/json',
-        dataType: 'json',
         data: JSON.stringify(formData),
         success: function(response) {
           console.log('Form đã được submit thành công:', response);
           alert('Dữ liệu đã gửi thành công!');
         },
-        error: function(error) {
-          console.error('Lỗi khi submit form:', error);
+        error: function(xhr, status, error) {
+          console.error('Lỗi khi submit form:', status, error);
           alert('Có lỗi xảy ra!');
         }
       });

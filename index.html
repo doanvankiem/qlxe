@@ -8,6 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
 <div class="container">
@@ -378,7 +379,52 @@
     return yy + MM + dd + hh + ii;
   }
 
+  function initClient() {
+    gapi.client.init({
+      'apiKey': 'AIzaSyB6RdUNIvZUAo2u8EVgRcMlLNUZup4Lo3s',
+      'clientId': '308244759435-mmoss8uvha5gqt3pml789fbmrq6th0vr.apps.googleusercontent.com',
+      'scope': 'https://www.googleapis.com/auth/spreadsheets',
+      'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4']
+    }).then(function () {
+      console.log('GAPI client loaded for API');
+    }, function (error) {
+      console.error('Error loading GAPI client for API', error);
+    });
+  }
+
+  function loadClient() {
+    gapi.load('client:auth2', initClient);
+  }
+
+  function appendData(data) {
+    const spreadsheetId = 'YOUR_SPREADSHEET_ID'; // Thay thế với ID của Google Sheets
+    const range = 'NHATKY!A1'; // Thay đổi với tên sheet và vị trí ô bắt đầu
+
+    const values = [
+      [loaiHang, tenBai, maHang] // Dữ liệu cần thêm
+    ];
+
+    const body = {
+      values: values
+    };
+
+    gapi.client.sheets.spreadsheets.values.append({
+      spreadsheetId: spreadsheetId,
+      range: range,
+      valueInputOption: 'RAW',
+      resource: body
+    }).then((response) => {
+      const result = response.result;
+      console.log(`${result.updates.updatedCells} cells appended.`);
+      alert('Dữ liệu đã được thêm thành công!');
+    }, (error) => {
+      console.error('Error adding data to Google Sheets: ', error);
+      alert('Đã xảy ra lỗi khi thêm dữ liệu.');
+    });
+  }
+
   $(document).ready(function () {
+    loadClient();
     $('#clear-btn').click(function() {
       $('#frm-create-order')[0].reset();
     });
@@ -403,11 +449,11 @@
         ghiChu: $('#ghi-chu').val(),
         thanhTien: $('#thanh-tien').val()
       };
-      console.log(formData);
-      $.ajax({
+      /*$.ajax({
         url: 'https://script.google.com/macros/s/AKfycbyMtiz0sRs1yxqe6RX0m60rpbpJD2W-FQEa_wRo5iyoeUqIjmxu2BS0kLUU9toCES0iEQ/exec',  // URL của Apps Script Web App
         method: 'POST',
         contentType: 'application/json',
+        dataType: 'json',
         data: JSON.stringify(formData),
         success: function(response) {
           console.log('Form đã được submit thành công:', response);
@@ -417,7 +463,27 @@
           console.error('Lỗi khi submit form:', status, error);
           alert('Có lỗi xảy ra!');
         }
-      });
+      });*/
+      fetch('https://script.google.com/macros/s/AKfycbyMtiz0sRs1yxqe6RX0m60rpbpJD2W-FQEa_wRo5iyoeUqIjmxu2BS0kLUU9toCES0iEQ/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'same-origin',
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert('Data submitted successfully!');
+          } else {
+            alert('There was an error submitting the data.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
     });
 
     $('select').formSelect();

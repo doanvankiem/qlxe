@@ -5,175 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Đăng Ký</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
 </head>
 <body>
 <div class="container">
-  <div class="center-align">
+  <div class="text-center text-uppercase">
     <h4>Tạo đơn</h4>
   </div>
 
   <form action="" id="frm-create-order">
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <select id="loai-hang" required>
-            <option value="" selected>Chọn loại hàng</option>
-            <option value="Hàng Tổng Hợp">Hàng Tổng Hợp</option>
-            <option value="Hàng Cảng">Hàng Cảng</option>
-          </select>
-          <label>Loại Hàng</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="loai-hang">Loại Hàng</label>
+      <select class="form-control" id="loai-hang" required>
+        <option value="">Chọn loại hàng</option>
+        <option value="Hàng Tổng Hợp">Hàng Tổng Hợp</option>
+        <option value="Hàng Cảng">Hàng Cảng</option>
+      </select>
+      <div class="invalid-feedback">Vui lòng chọn loại hàng.</div>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <select id="ten-bai" required>
-            <option value="" selected>Chọn tên bãi</option>
-          </select>
-          <label>Tên Bãi</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="ten-bai">Tên Bãi</label>
+      <select class="form-control" id="ten-bai" required disabled>
+        <option value="">Chọn tên bãi</option>
+      </select>
+      <div class="invalid-feedback">Vui lòng chọn tên bãi.</div>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <select id="ma-hang" required>
-            <option value="" selected>Chọn mã hàng</option>
-          </select>
-          <label>Mã Hàng</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="ma-hang">Mã Hàng</label>
+      <select class="form-control" id="ma-hang" required disabled>
+        <option value="">Chọn mã hàng</option>
+      </select>
+      <div class="invalid-feedback">Vui lòng chọn mã hàng</div>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="cuoc-thu-bai" type="text" readonly>
-          <label for="cuoc-thu-bai">Cước Thu Bãi</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="cuoc-thu-bai">Cước Thu Bãi</label>
+      <input type="text" class="form-control" id="cuoc-thu-bai" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="gia-mua" type="text" readonly>
-          <label for="gia-mua">Giá Mua</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="gia-mua">Giá Mua</label>
+      <input type="text" class="form-control" id="gia-mua" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="tien-cuoc" type="text" readonly>
-          <label for="tien-cuoc">Tiền Cước</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="tien-cuoc">Tiền Cước</label>
+      <input type="text" class="form-control" id="tien-cuoc" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="so-chuyen" type="text" readonly>
-          <label for="so-chuyen">Số Chuyến</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="so-chuyen">Số Chuyến</label>
+      <input type="text" class="form-control" id="so-chuyen" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="tai-xe" type="text" readonly>
-          <label for="tai-xe">Tài Xế</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="tai-xe">Tài Xế</label>
+      <input type="text" class="form-control" id="tai-xe" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="boi-duong" type="text" readonly>
-          <label for="boi-duong">Bồi Dưỡng</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="boi-duong">Bồi Dưỡng</label>
+      <input type="text" class="form-control" id="boi-duong" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="dau-tieu-thu" type="text" readonly>
-          <label for="dau-tieu-thu">Dầu Tiêu Thụ</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="dau-tieu-thu">Dầu Tiêu Thụ</label>
+      <input type="text" class="form-control" id="dau-tieu-thu" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="tien-dau" type="text" readonly>
-          <label for="tien-dau">Tiền Dầu</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="tien-dau">Tiền Dầu</label>
+      <input type="text" class="form-control" id="tien-dau" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="dia-diem-van-chuyen" type="text" readonly>
-          <label for="dia-diem-van-chuyen">Địa Điểm V/C</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="dia-diem-van-chuyen">Địa Điểm V/C</label>
+      <input type="text" class="form-control" id="dia-diem-van-chuyen" readonly>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <select id="thanh-toan">
-            <option value="" selected>Trạng thái thanh toán</option>
-            <option value="Đã thanh toán">Đã thanh toán</option>
-            <option value="Chưa thanh toán">Chưa thanh toán</option>
-          </select>
-          <label>Thanh Toán</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="thanh-toan">Thanh Toán</label>
+      <select id="thanh-toan" class="form-control" disabled>
+        <option value="">Trạng thái thanh toán</option>
+        <option value="Đã thanh toán">Đã thanh toán</option>
+        <option value="Chưa thanh toán" selected>Chưa thanh toán</option>
+      </select>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <textarea id="ghi-chu" class="materialize-textarea"></textarea>
-          <label for="ghi-chu">Ghi Chú</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="ghi-chu">Ghi Chú</label>
+      <textarea id="ghi-chu" class="form-control" disabled></textarea>
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="input-field">
-          <input id="thanh-tien" type="text" readonly>
-          <label for="thanh-tien">Thành Tiền</label>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="thanh-tien">Thành Tiền</label>
+      <input type="text" class="form-control" id="thanh-tien" readonly>
     </div>
 
     <div class="row">
     <div class="col s6">
-      <button id="clear-btn" class="btn red lighten-1 waves-effect waves-light" type="button">Nhập lại
-        <i class="material-icons right">clear</i>
-      </button>
+      <button id="clear-btn" class="btn btn-danger" type="button" disabled>Nhập lại</button>
     </div>
-    <div class="col s6 right-align">
-      <button id="submit-btn" class="btn waves-effect waves-light" type="button">Lưu
-        <i class="material-icons right">send</i>
-      </button>
+    <div class="col s6 text-right">
+      <button id="submit-btn" class="btn btn-success" type="button" disabled>Lưu</button>
     </div>
   </div>
   </form>
@@ -305,7 +245,8 @@
             $('#ten-bai').append(`<option value="${row}">${row}</option>`);
           });
         }
-        $('select').formSelect(); // Reinitialize Materialize select
+        $('#ten-bai').prop('disabled', false);
+        $('#ten-bai').removeClass('is-invalid');
       },
       error: function(err) {
         console.error('Error fetching data:', err);
@@ -326,7 +267,8 @@
             $('#ma-hang').append(`<option value="${row}">${row}</option>`);
           });
         }
-        $('select').formSelect(); // Reinitialize Materialize select
+        $('#ma-hang').prop('disabled', false);
+        $('#ma-hang').removeClass('is-invalid');
       },
       error: function(err) {
         console.error('Error fetching data:', err);
@@ -492,13 +434,12 @@
       submitData();
     });
 
-    $('select').formSelect();
-
     // Load Tên Bãi based on Loại Hàng
     $('#loai-hang').change(function () {
       const loaiHang = $(this).val();
-      $('#ten-bai').html('<option value="" disabled selected>Chọn tên bãi</option>'); // Reset Tên Bãi
-      $('#ma-hang').html('<option value="" disabled selected>Chọn mã hàng</option>'); // Reset Mã Hàng
+      $('#ten-bai, #ma-hang').prop('disabled', true);
+      $('#ten-bai').html('<option value="" selected>Chọn tên bãi</option>'); // Reset Tên Bãi
+      $('#ma-hang').html('<option value="" selected>Chọn mã hàng</option>'); // Reset Mã Hàng
       if (loaiHang !== '') {
         loadTenBai(loaiHang);
       }
@@ -506,9 +447,8 @@
 
     // Load Mã Hàng based on Tên Bãi
     $('#ten-bai').change(function () {
-      $('#ma-hang').html('<option value="" disabled selected>Chọn mã hàng</option>'); // Reset Mã Hàng
+      $('#ma-hang').html('<option value="" selected>Chọn mã hàng</option>'); // Reset Mã Hàng
       loadMaHang();
-      $('select').formSelect(); // Reinitialize Materialize select
     });
 
     // Load remaining fields based on Mã Hàng
@@ -516,6 +456,7 @@
       if ($('#ten-bai').val()) {
         loadData();
       }
+      $('#ghi-chu, #thanh-toan, #submit-btn, #clear-btn').prop('disabled', false);
     });
   });
 </script>

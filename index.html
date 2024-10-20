@@ -285,7 +285,7 @@
         const rows = response.values;
         if (rows && rows.length > 0) {
           rows.forEach((items, index) => {
-            const selectedItem = items.find(item => item === $('#ma-hang').val());
+            const selectedItem = items.find(item => item.toLowerCase().trim() === $('#ma-hang').val().toLowerCase().trim());
             if (selectedItem) {
               $('#cuoc-thu-bai').val(rows[index][1]);
               $('#gia-mua').val(rows[index][2]);
@@ -298,7 +298,6 @@
               $('#dia-diem-van-chuyen').val(rows[index][9]);
               const total = parseCurrency(rows[index][1]) - parseCurrency(rows[index][2]) - parseCurrency(rows[index][4]) - parseCurrency(rows[index][6]) - parseCurrency(rows[index][7]);
               $('#thanh-tien').val(formatCurrency(total));
-              M.updateTextFields();
             }
           });
         }

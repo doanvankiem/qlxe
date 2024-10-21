@@ -10,6 +10,19 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
+  <style>
+    .fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background: #fff;
+      right: 0;
+      -webkit-box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.75);
+      box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.75);
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -108,14 +121,12 @@
       <input type="text" class="form-control" id="thanh-tien" readonly>
     </div>
 
-    <div class="row">
-    <div class="col s6">
-      <button id="clear-btn" class="btn btn-danger" type="button" disabled>Nhập lại</button>
+    <div class="row fixed">
+      <div class="col s6 text-right">
+        <button id="clear-btn" class="btn btn-danger" type="button" disabled>Nhập lại</button>
+        <button id="submit-btn" class="btn btn-success" type="button" disabled>Lưu</button>
+      </div>
     </div>
-    <div class="col s6 text-right">
-      <button id="submit-btn" class="btn btn-success" type="button" disabled>Lưu</button>
-    </div>
-  </div>
   </form>
 </div>
 <script>

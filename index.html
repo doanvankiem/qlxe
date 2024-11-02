@@ -22,6 +22,20 @@
       box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.75);
       padding: 10px;
     }
+    #frm-create-order {
+      margin-bottom: 80px;
+    }
+    .thanh-tien label {
+      color: green;
+    }
+    .thanh-tien input {
+      background: green !important;
+      color: #fff;
+    }
+
+    #today {
+      max-width: 140px;
+    }
   </style>
 </head>
 <body>
@@ -62,9 +76,14 @@
       <input type="text" class="form-control" id="cuoc-thu-bai" readonly>
     </div>
 
-    <div class="form-group">
+    <div class="form-group gia-mua">
       <label for="gia-mua">Giá Mua</label>
       <input type="text" class="form-control" id="gia-mua" readonly>
+    </div>
+
+    <div class="form-group khoi-luong d-none">
+      <label for="khoi-luong">Khối Lượng/Tấn</label>
+      <input type="text" class="form-control" id="khoi-luong">
     </div>
 
     <div class="form-group">
@@ -116,15 +135,17 @@
       <textarea id="ghi-chu" class="form-control" disabled></textarea>
     </div>
 
-    <div class="form-group">
+    <div class="form-group thanh-tien">
       <label for="thanh-tien">Thành Tiền</label>
       <input type="text" class="form-control" id="thanh-tien" readonly>
     </div>
 
     <div class="row fixed">
-      <div class="col s6 text-right">
-        <button id="clear-btn" class="btn btn-danger" type="button" disabled>Nhập lại</button>
-        <button id="submit-btn" class="btn btn-success" type="button" disabled>Lưu</button>
+      <div class="col s6 text-right d-flex justify-content-end">
+        <input id="today" class="form-control" type="date"/>
+        <button id="all-btn" class="btn btn-primary ml-2" type="button">Xem Tất Cả</button>
+        <button id="clear-btn" class="btn btn-danger ml-2" type="button" disabled>Nhập lại</button>
+        <button id="submit-btn" class="btn btn-success ml-2" type="button" disabled>Lưu</button>
       </div>
     </div>
   </form>
@@ -289,6 +310,7 @@
 
   function loadData() {
     const range = getRange($('#ten-bai').val());
+    const loaiHang = $('#loai-hang').val();
     $.ajax({
       url: `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`,
       method: 'GET',
@@ -299,16 +321,27 @@
             const selectedItem = items.find(item => item.toLowerCase().trim() === $('#ma-hang').val().toLowerCase().trim());
             if (selectedItem) {
               $('#cuoc-thu-bai').val(rows[index][1]);
-              $('#gia-mua').val(rows[index][2]);
-              $('#tien-cuoc').val(rows[index][3]);
-              $('#so-chuyen').val(rows[index][8]);
-              $('#tai-xe').val(rows[index][4]);
-              $('#boi-duong').val(rows[index][7]);
-              $('#dau-tieu-thu').val(rows[index][5]);
-              $('#tien-dau').val(rows[index][6]);
-              $('#dia-diem-van-chuyen').val(rows[index][9]);
-              const total = parseCurrency(rows[index][1]) - parseCurrency(rows[index][2]) - parseCurrency(rows[index][4]) - parseCurrency(rows[index][6]) - parseCurrency(rows[index][7]);
-              $('#thanh-tien').val(formatCurrency(total));
+              if (loaiHang === 'Hàng Tổng Hợp') {
+                $('#gia-mua').val(rows[index][2]);
+                $('#tien-cuoc').val(rows[index][3]);
+                $('#so-chuyen').val(rows[index][8]);
+                $('#tai-xe').val(rows[index][4]);
+                $('#boi-duong').val(rows[index][7]);
+                $('#dau-tieu-thu').val(rows[index][5]);
+                $('#tien-dau').val(rows[index][6]);
+                $('#dia-diem-van-chuyen').val(rows[index][9]);
+
+                const total = parseCurrency(rows[index][1]) - parseCurrency(rows[index][2]) - parseCurrency(rows[index][4]) - parseCurrency(rows[index][6]) - parseCurrency(rows[index][7]);
+                $('#thanh-tien').val(formatCurrency(total));
+              } else {
+                $('#so-chuyen').val(rows[index][7]);
+                $('#tai-xe').val(rows[index][3]);
+                $('#boi-duong').val(rows[index][6]);
+                $('#dau-tieu-thu').val(rows[index][4]);
+                $('#tien-dau').val(rows[index][5]);
+                $('#dia-diem-van-chuyen').val(rows[index][8]);
+                $('#thanh-tien').val(formatCurrency(0));
+              }
             }
           });
         }
@@ -398,6 +431,7 @@
       maHang: $('#ma-hang').val(),
       cuocThuBai: $('#cuoc-thu-bai').val(),
       giaMua: $('#gia-mua').val(),
+      khoiLuong: $('#khoi-luong').val() ?? '',
       tienCuoc: $('#tien-cuoc').val(),
       soChuyen: $('#so-chuyen').val(),
       taiXe: $('#tai-xe').val(),
@@ -410,14 +444,22 @@
       ghiChu: $('#ghi-chu').val(),
       thanhTien: $('#thanh-tien').val()
     };
+
+    if (formData.loaiHang === 'Hàng Cảng' && !formData.khoiLuong) {
+      alert('Vui lòng nhập khối lượng hàng!');
+      return;
+    }
+
     const currentDay = dayjs().format('DD/MM/YYYY');
     const values = [
       [
         currentDay, formData.maDonHang,
         formData.tenBai, formData.loaiHang,
-        formData.maHang, '',
-        '', formData.tienCuoc,
-        formData.cuocThuBai, formData.soChuyen,
+        formData.maHang, formData.khoiLuong,
+        formData.loaiHang === 'Hàng Cảng' ? formData.cuocThuBai : '',
+        formData.tienCuoc,
+        formData.loaiHang === 'Hàng Tổng Hợp' ? formData.cuocThuBai : '',
+        formData.soChuyen,
         formData.taiXe, formData.boiDuong,
         formData.dauTieuThu, formData.tienDau,
         formData.thanhTien, formData.diaDiemVanChuyen,
@@ -435,6 +477,13 @@
   }
 
   $(document).ready(function () {
+    $('#today').val(dayjs().format('YYYY-MM-DD'));
+    $('#today').change(function() {
+      const value = $(this).val();
+      console.log(value);
+    });
+
+
     $('#clear-btn').click(function() {
       $('#frm-create-order')[0].reset();
     });
@@ -444,14 +493,32 @@
       submitData();
     });
 
+    $('#khoi-luong').blur(function() {
+      const val = $(this).val();
+      const cuocThuBai = parseCurrency($('#cuoc-thu-bai').val());
+      const taiXe = parseCurrency($('#tai-xe').val());
+      const boiDuong = parseCurrency($('#boi-duong').val());
+      const tienDau = parseCurrency($('#tien-dau').val());
+      $('#tien-cuoc').val(formatCurrency(val * cuocThuBai));
+      $('#thanh-tien').val(formatCurrency(val * cuocThuBai - taiXe - boiDuong - tienDau));
+    })
+
     // Load Tên Bãi based on Loại Hàng
     $('#loai-hang').change(function () {
       const loaiHang = $(this).val();
+      $('#cuoc-thu-bai, #gia-mua, #tien-cuoc, #so-chuyen, #tai-xe, #boi-duong, #dau-tieu-thu, #tien-dau, #dia-diem-van-chuyen').val('');
       $('#ten-bai, #ma-hang').prop('disabled', true);
       $('#ten-bai').html('<option value="" selected>Chọn tên bãi</option>'); // Reset Tên Bãi
       $('#ma-hang').html('<option value="" selected>Chọn mã hàng</option>'); // Reset Mã Hàng
       if (loaiHang !== '') {
         loadTenBai(loaiHang);
+      }
+      if (loaiHang === 'Hàng Cảng') {
+        $('.gia-mua').addClass('d-none');
+        $('.khoi-luong').removeClass('d-none');
+      } else {
+        $('.gia-mua').removeClass('d-none');
+        $('.khoi-luong').addClass('d-none');
       }
     });
 
